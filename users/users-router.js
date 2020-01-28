@@ -7,7 +7,10 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 router.get('/users',  restricted, (req, res) => {
-    Users.findUsers()
+    //console.log(req.token);
+    console.log(req.token.department);
+    //Users.findUsers()
+    Users.findUsersByDepartment(req.token.department)
         .then(users => {
             res.status(200).json(users);
         })

@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
     if (authorization) {
         jwt.verify(authorization, secret, function(err, decodedToken) {
             if (err) {
-                res.status(401).json({message: 'invalid token'})
+                res.status(401).json({message: 'invalid token. You shall not pass!'})
             } else {
                 req.token = decodedToken //so anything downstream can access the data in the token
                 next();

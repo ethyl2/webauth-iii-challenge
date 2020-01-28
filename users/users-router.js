@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const Users = require('./users-model.js');
 //const restricted = require('../auth/restricted-middleware.js');
+const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
@@ -33,8 +34,8 @@ router.post('/login', (req, res) => {
     Users.findUserByUsername(username)
         .then(user => {
             if (user && bcrypt.compareSync(password, user.password)) {
-                req.session.user = user;  
-                res.status(200).json({message: 'Logged in successfully', user_id: user.id})
+                const token = generateToken(user); 
+                res.status(200).json({message: 'Logged in successfully', token})
             } else {
                 res.status(401).json({message: 'Invalid credentials. You shall not pass!'})
             }
@@ -43,6 +44,19 @@ router.post('/login', (req, res) => {
             res.status(500).json({error: err, message: 'Failure to log in'})
         });
 });
+
+function generateToken(user) {
+    const payload = {
+        subject: user.id,
+        username: user.username,
+        department: user.department
+    }
+    const secret = process.env.JWT_SECRET || 'so much to learn to set up a database';
+    const options = {
+        expiresIn: '8h'
+    }
+    return jwt.sign(payload, secret, options);
+}
 
 //TODO: logout functionality
 /*

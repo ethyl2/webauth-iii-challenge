@@ -1,13 +1,12 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const Users = require('./users-model.js');
-//const restricted = require('../auth/restricted-middleware.js');
+const restricted = require('../auth/restricted-middleware.js');
 const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
-//TODO: make and add restricted middleware
-router.get('/users',  (req, res) => {
+router.get('/users',  restricted, (req, res) => {
     Users.findUsers()
         .then(users => {
             res.status(200).json(users);

@@ -1,7 +1,8 @@
 module.exports = {
     addUser,
     findUserById,
-    findUserByUsername    
+    findUserByUsername,
+    findUsers    
 }
 
 const db = require('../data/db-config.js');
@@ -24,4 +25,8 @@ function findUserByUsername(submitted_username) {
     return db('users')
         .where({ username: submitted_username})
         .first();
+}
+
+function findUsers() {
+    return db('users');
 }

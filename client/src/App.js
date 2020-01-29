@@ -3,9 +3,9 @@ import './App.scss';
 import { NavLink, Route } from 'react-router-dom';
 
 import Signup from './components/Signup';
-import Signin from './components/Signin';
 import Users from './components/Users';
 import Home from './components/Home';
+import SignIn from './components/SignIn';
 
 function App() {
   return (
@@ -15,7 +15,10 @@ function App() {
       </header>
 
       <div className='main-content'>
-        
+        <Route exact path='/' component={Home} />
+        <Route path='/signup' component = {Signup} />
+        <Route path='/signin' component={SignIn} />
+        <Route path='/users' component={Users} /> 
       </div>
 
       <footer>
@@ -32,6 +35,6 @@ export default App;
 /*
 <Route exact path='/' component={Home} />
         <Route path='/signup' component = {Signup} />
-        <Route path='/signin' component={Signin} />
+        <Route path='/signin' component={SignIn} />
         <Route path='/users' component={Users} />
 */

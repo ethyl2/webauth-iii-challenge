@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Signin = props => {
+const SignIn = props => {
     const [userInput, setUserInput] = useState({username: '', password: ''});
 
     const handleChange = e => {
@@ -47,7 +47,7 @@ const Signin = props => {
     )
 }
 
-export default Login;
+export default SignIn;
 
 // {!props.isLoggedIn && 
 

@@ -19,7 +19,7 @@ const Signup = props => {
              
             <form onSubmit={handleSubmit}>
                 <legend>Sign up at the Department Depot</legend>
-
+                <div>
                 <label htmlFor='username'>Username:</label>
                 <input type='text'
                     placeholder='username'
@@ -46,9 +46,10 @@ const Signup = props => {
                     value={userInput.department}
                     onChange={handleChange}
                 />
-
+                
+                </div>
                 <button type='submit'>Submit</button>
-
+                
 
             </form>
 

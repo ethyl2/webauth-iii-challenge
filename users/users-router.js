@@ -64,21 +64,4 @@ function generateToken(user) {
     return jwt.sign(payload, secret, options);
 }
 
-//TODO: logout functionality
-/*
-router.get('/logout', (req, res) => {
-    if (req.session) {
-        req.session.destroy(err => {
-            if (err) {
-                res.json({error: err, message: "Logout error"})
-            } else {
-                res.status(200).json({message: "Successful logout"});
-            }
-        })
-    } else {
-        res.status(200).json({message: "No session found"})
-    }
-});
-*/
-
 module.exports = router;

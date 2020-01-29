@@ -17,17 +17,20 @@ const Users = props => {
     }, []);
 
     return (
-        <div>
+        <div className='users-page'>
+            {!users && <h2>Sign up or log on to see your department</h2>}
             {users && <h2>{users[0].department.toUpperCase()}</h2>}
-            {users && users.map(user => {
-                return (
-                    <div key={user.id}>
-                        <h3>{user.username}</h3>
-                        <p>ID: {user.id}</p>
-                        <p>department: {user.department}</p>
-                    </div>
-                )
-            })}
+            <div className='users-box'>
+                {users && users.map(user => {
+                    return (
+                        <div className='user-box' key={user.id}>
+                            <h3>{user.username}</h3>
+                            <p>ID: {user.id}</p>
+                            <p>department: {user.department}</p>
+                        </div>
+                    )
+                })}
+            </div>
         </div>
     )
 }

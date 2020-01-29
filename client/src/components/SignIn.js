@@ -9,7 +9,8 @@ const SignIn = props => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        //props.loginUser(userInput);
+        const push = props.history.push;
+        props.loginUser(userInput, push);
     }
     return (
         <div>

@@ -24,6 +24,19 @@ function App(props) {
       });
   };
 
+  const loginUser = (user, push) => {
+    axios.post('http://localhost:5000/api/login', user)
+      .then(response => {
+        console.log(response)
+        setUser(response.data.user);
+        localStorage.setItem('token', response.data.token);
+        push('/users');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -39,7 +52,7 @@ function App(props) {
       <div className='main-content'>
         <Route exact path='/' component={Home} />
         <Route path='/signup' render={props => <Signup {...props} registerUser={registerUser} />} />
-        <Route path='/signin' component={SignIn} />
+        <Route path='/signin' render={props => <SignIn {...props} loginUser={loginUser} />} />
         <Route path='/users' component={Users} /> 
       </div>
 

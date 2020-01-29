@@ -7,6 +7,7 @@ import Signup from './components/Signup';
 import Users from './components/Users';
 import Home from './components/Home';
 import SignIn from './components/SignIn';
+import SignOut from './components/SignOut';
 
 function App(props) {
   const [user, setUser] = useState({username: '', password: '', department: ''})
@@ -46,6 +47,7 @@ function App(props) {
          <NavLink to='/signup'>Sign Up</NavLink>
          <NavLink to='/signin'>Sign In</NavLink>
          <NavLink to='/users'>Users</NavLink>
+         <NavLink to='/signout'>Sign Out</NavLink>
        </nav>
       </header>
 
@@ -54,6 +56,7 @@ function App(props) {
         <Route path='/signup' render={props => <Signup {...props} registerUser={registerUser} />} />
         <Route path='/signin' render={props => <SignIn {...props} loginUser={loginUser} />} />
         <Route path='/users' component={Users} /> 
+        <Route path='/signout' component={SignOut} />
       </div>
 
       <footer>

@@ -17,25 +17,29 @@ const SignIn = props => {
            
             <form onSubmit={handleSubmit}>
                 <legend>Log in to See Your Department Team</legend>
-                <div>
-                <label htmlFor='username'>Username:</label>
-                <input type='text'
-                    placeholder='username'
-                    name='username'
-                    id='username'
-                    value={userInput.username}
-                    onChange={handleChange}
-                />
+                <div className='inner-form'>
+                    <div>
+                        <label htmlFor='username'>Username:</label>
+                        <input type='text'
+                            placeholder='username'
+                            name='username'
+                            id='username'
+                            value={userInput.username}
+                            onChange={handleChange}
+                        />
+                    </div>
                 
-                <label htmlFor='password'>Password:</label>
-                <input type='password'
-                    name='password'
-                    id='password'
-                    placeholder='********'
-                    value={userInput.password}
-                    onChange={handleChange}
-                />
-                </div>
+                    <div>
+                        <label htmlFor='password'>Password:</label>
+                        <input type='password'
+                            name='password'
+                            id='password'
+                            placeholder='********'
+                            value={userInput.password}
+                            onChange={handleChange}
+                        />
+                        </div>
+                    </div>
                 <button type='submit'>Submit</button>
 
             </form> 

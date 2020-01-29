@@ -143,11 +143,11 @@ form {
     font-size: 2rem;
     margin: 1rem;
   }
-  div {
+  .inner-form {
     padding: 1rem;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     justify-items: space-between;
     width: 90%;
@@ -156,6 +156,12 @@ form {
     input[placeholder] {
       padding-left: 0.25rem;
       font-family: 'Comfortaa', cursive;
+    }
+    div {
+      padding: 1rem;
+    }
+    label {
+      padding-right: 0.25rem;
     }
     
   }

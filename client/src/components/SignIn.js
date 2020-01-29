@@ -37,12 +37,7 @@ const SignIn = props => {
 
                 <button type='submit'>Submit</button>
 
-
-            </form>
-            }
-
-           
-            
+            </form> 
         </div>
     )
 }

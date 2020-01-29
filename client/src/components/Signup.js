@@ -9,14 +9,16 @@ const Signup = props => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        //props.registerUser(userInput);
+        //console.log(props.history);
+        const push = props.history.push();
+        props.registerUser(userInput, props.history.push);
     }
 
     return (
         <div>
              
             <form onSubmit={handleSubmit}>
-                <legend>Sign Up at the Department Depot</legend>
+                <legend>Sign up at the Department Depot</legend>
 
                 <label htmlFor='username'>Username:</label>
                 <input type='text'
@@ -36,6 +38,7 @@ const Signup = props => {
                     onChange={handleChange}
                 />
 
+                <label htmlFor='department'>Department:</label>
                 <input type='text'
                     placeholder='department'
                     name='department'

@@ -26,7 +26,10 @@ router.post('/register', (req, res) => {
     const hash = bcrypt.hashSync(user.password, 12);
     user.password = hash;
     Users.addUser(user)
-        .then(saved => res.status(201).json(saved))
+        .then(saved => {
+            const token = generateToken(user);
+            res.status(201).json({user: user, token: token})
+        })
         .catch(err => {
             res.status(500).json({error: err, message: 'Failure to add user'})
         });

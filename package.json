@@ -4,7 +4,7 @@
   "description": "- Authentication.\r - Express Middleware.\r - JSON Web Tokens (JWTs).\r - Hashing Passwords.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watch",
     "server": "nodemon index.js",
     "start": "node index.js"
   },
@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/ethyl2/webauth-iii-challenge#readme",
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -32,5 +34,8 @@
     "knex": "^0.20.8",
     "morgan": "^1.9.1",
     "sqlite3": "^4.1.1"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }

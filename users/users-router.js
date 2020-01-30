@@ -64,4 +64,15 @@ function generateToken(user) {
     return jwt.sign(payload, secret, options);
 }
 
+router.delete('/users/:id', (req, res) => {
+    const id = req.params.id;
+    Users.removeUser(id)
+        .then(response => {
+            res.status(200).json({message: `Removed user with id ${id}`});
+        })
+        .catch(err => {
+            res.status(500).json(err);
+        })
+});
+
 module.exports = router;

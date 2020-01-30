@@ -3,7 +3,8 @@ module.exports = {
     findUserById,
     findUserByUsername,
     findUsers, 
-    findUsersByDepartment    
+    findUsersByDepartment,
+    removeUser    
 }
 
 const db = require('../data/db-config.js');
@@ -37,4 +38,10 @@ function findUsersByDepartment(department) {
     return db('users')
         .where({'users.department': department})
         .select('users.id', 'users.username', 'users.department')
+}
+
+function removeUser(user_id) {
+    return db('users')
+        .where({ id: user_id })
+        .del();
 }

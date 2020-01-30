@@ -5,6 +5,7 @@ describe('server', function() {
     it('runs the test', function() {
         expect(true).toBe(true);
     });
+
     describe('GET /', function() {
         it('should return 200 OK', function() {
             return request(server) 
@@ -28,6 +29,7 @@ describe('server', function() {
                 });
         });
     });
+
     describe('POST api/register', function() {
         it('should register a new user', function() {
             return request(server)
@@ -85,6 +87,7 @@ describe('server', function() {
             });
         });                
     });
+
     describe('POST api/login', function() {
         it('should login an existing user', function() {
             return request(server)
@@ -113,5 +116,94 @@ describe('server', function() {
             });
         });
     });
-});
 
+    describe('GET api/users', function() {
+        it('should return 200 OK after a successful login', function() {
+            return request(server)
+                .post('/api/login')
+                .send({"username": "aaron",
+                "password": "123456"})
+                .then(response => {
+                    let currentToken = response.body.token; 
+                    return request(server) 
+                        .get('/api/users') 
+                        .set('Authorization', currentToken)
+                        .then(res => {
+                            expect(res.status).toBe(200);
+                            expect(res.body.length).toBeGreaterThanOrEqual(1);    
+                        });                        
+                });
+        });
+        it('should return a body containing users after a successful login', function() {
+            return request(server)
+                .post('/api/login')
+                .send({"username": "aaron",
+                "password": "123456"})
+                .then(response => {
+                    let currentToken = response.body.token; 
+                    return request(server) 
+                        .get('/api/users') 
+                        .set('Authorization', currentToken)
+                        .then(res => {
+                            expect(res.body.length).toBeGreaterThanOrEqual(1);   
+                            });    
+                        });                        
+                });
+        });
+        it('should return a property of id', function() {
+            return request(server)
+                .post('/api/login')
+                .send({"username": "aaron",
+                "password": "123456"})
+                .then(response => {
+                    let currentToken = response.body.token; 
+                    return request(server) 
+                        .get('/api/users') 
+                        .set('Authorization', currentToken)
+                        .then(res => {
+                                expect(res.body[0]).toHaveProperty('id');
+                        });
+                });
+        });
+    describe('DELETE api/users/:id', function() {
+        beforeEach(() => {
+            return request(server)
+                .post('/api/register')
+                .send({"username": "brittney",
+                "password": "123456",
+                "department": "sewing"
+                })
+        });
+        it('should return 200 OK after a successful deletion', function() {
+            return request(server)
+                .post('/api/login')
+                .send({"username": "brittney",
+                "password": "123456",
+                })
+                .then(res => {
+                    const current_id = res.body.user.id;
+                    return request(server)
+                        .delete(`/api/users/${current_id}`)
+                        .then(lastResponse => {
+                            expect(lastResponse.status).toBe(200);
+                        });    
+                });
+        });
+            
+        it('should return a JSON message after a successful deletion', function() {
+            return request(server)
+                .post('/api/login')
+                .send({"username": "brittney",
+                "password": "123456",
+                })
+                .then(res => {
+                    const current_id = res.body.user.id;
+                    return request(server)
+                        .delete(`/api/users/${current_id}`)
+                        .then(lastResponse => {
+                            expect(lastResponse.body.message).toBe(`Removed user with id ${current_id}`);
+                        });    
+                });
+        });
+    });
+});

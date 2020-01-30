@@ -6,6 +6,10 @@ describe('server', function() {
         expect(true).toBe(true);
     });
 
+    it('uses the test environment', function() {
+        expect(process.env.DB).toBe('testing');
+    });
+
     describe('GET /', function() {
         it('should return 200 OK', function() {
             return request(server) 
@@ -148,7 +152,6 @@ describe('server', function() {
                             expect(res.body.length).toBeGreaterThanOrEqual(1);   
                             });    
                         });                        
-                });
         });
         it('should return a property of id', function() {
             return request(server)
@@ -165,6 +168,8 @@ describe('server', function() {
                         });
                 });
         });
+    });
+
     describe('DELETE api/users/:id', function() {
         beforeEach(() => {
             return request(server)

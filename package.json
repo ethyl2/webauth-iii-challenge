@@ -4,7 +4,7 @@
   "description": "- Authentication.\r - Express Middleware.\r - JSON Web Tokens (JWTs).\r - Hashing Passwords.",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env DB=testing jest --watch",
+    "test": "cross-env DB_ENV=testing jest --watch",
     "server": "nodemon index.js",
     "start": "node index.js"
   },

@@ -7,7 +7,7 @@ describe('server', function() {
     });
 
     it('uses the test environment', function() {
-        expect(process.env.DB).toBe('testing');
+        expect(process.env.DB_ENV).toBe('testing');
     });
 
     describe('GET /', function() {
